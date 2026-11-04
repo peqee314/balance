@@ -1,0 +1,599 @@
+:root {
+    --gye-black: #111111;
+    --gye-yellow: #f1c40f;
+    --gye-red: #e74c3c;
+    --primary-color: #1a252f;
+    --secondary-color: #2c3e50;
+    --accent-color: #e67e22;
+    --bg-color: #f4f6f7;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --border-color: #dcdde1;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: var(--gye-black);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px solid var(--gye-yellow);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo {
+    height: 50px;
+    background: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
+
+header h1 span {
+    color: var(--gye-yellow);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.btn-logout {
+    background-color: var(--gye-red);
+    padding: 6px 12px;
+    font-size: 12px;
+    width: auto;
+}
+.btn-logout:hover { background-color: #c0392b; }
+
+#login-screen {
+    max-width: 420px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--gye-yellow);
+    text-align: center;
+}
+
+.login-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.role-card {
+    border: 2px solid var(--border-color);
+    padding: 12px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #fafafa;
+    text-align: left;
+}
+
+.role-card:hover {
+    border-color: var(--secondary-color);
+    background: #f0f3f4;
+}
+
+.auth-box {
+    display: none;
+    margin-top: 10px;
+    text-align: left;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.dashboard-stats {
+    background: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    display: flex;
+    gap: 30px;
+    font-size: 16px;
+    border-left: 4px solid var(--gye-red);
+}
+
+.dashboard-stats span {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+/* Sistema de Pestañas (Tabs) */
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background-color: #bdc3c7;
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.2s;
+    width: auto;
+}
+
+.tab-btn:hover {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.tab-btn.active {
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Restricciones por rol */
+body.operator-mode .admin-only, 
+body.operator-mode .factura-only,
+body.operator-mode .porteria-only,
+body.operator-mode .reportes-only,
+body.operator-mode-temp .factura-only,
+body.factura-mode .admin-only,
+body.factura-mode .operator-form-only,
+body.factura-mode .porteria-only,
+body.factura-mode .reportes-only,
+body.factura-mode .plantista-consumption-only,
+body.porteria-mode .admin-only,
+body.porteria-mode .factura-only,
+body.porteria-mode .operator-form-only,
+body.porteria-mode .non-porteria,
+body.porteria-mode .reportes-only,
+body.porteria-mode .plantista-consumption-only,
+body.admin-mode .plantista-consumption-only {
+    display: none !important;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group-full {
+    grid-column: span 2;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 55px;
+}
+
+.client-input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-new-client {
+    background-color: var(--secondary-color);
+    padding: 0 12px;
+    font-size: 12px;
+    width: auto;
+    white-space: nowrap;
+}
+.btn-new-client:hover { background-color: #1a252f; }
+
+.factura-checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8f9fa;
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    margin-top: 6px;
+    cursor: pointer;
+}
+.factura-checkbox-container input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.factura-checkbox-container label {
+    margin: 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.secuencia-camiones-box {
+    background: #f8f9fa;
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    border-radius: 4px;
+}
+.secuencia-add-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+.secuencia-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+.secuencia-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border: 1px solid #bdc3c7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.btn-add-secuencia {
+    background-color: var(--secondary-color);
+    padding: 6px 10px;
+    font-size: 12px;
+    width: auto;
+}
+.btn-add-secuencia:hover { background-color: #1a252f; }
+
+.btn-remove-secuencia {
+    background-color: var(--gye-red);
+    color: white;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 10px;
+}
+.btn-remove-secuencia:hover { background-color: #c0392b; }
+
+.aditivos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.aditivo-card {
+    background: #f8f9fa;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px;
+    position: relative;
+}
+
+.aditivo-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 11px;
+    color: var(--secondary-color);
+}
+
+.subproducto-field {
+    margin-bottom: 6px;
+}
+.subproducto-field:last-child {
+    margin-bottom: 0;
+}
+
+.subproducto-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 2px;
+}
+
+.subproducto-field input, .subproducto-field select {
+    width: 100%;
+    padding: 7px;
+    font-size: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: white;
+}
+
+.btn-add-item {
+    background-color: #27ae60;
+    padding: 8px 12px;
+    font-size: 12px;
+    width: 100%;
+}
+.btn-add-item:hover { background-color: #219653; }
+
+.btn-remove-item {
+    background-color: var(--gye-red);
+    color: white;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 10px;
+}
+.btn-remove-item:hover { background-color: #c0392b; }
+
+button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+button:hover { background-color: #1a252f; }
+
+.btn-cancel {
+    background-color: #7f8c8d;
+    margin-top: 5px;
+}
+.btn-cancel:hover { background-color: #616a6b; }
+
+.filter-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+table th, table td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+table th {
+    background-color: #f8f9fa;
+    color: var(--primary-color);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+}
+
+.btn-edit {
+    background-color: #f39c12;
+    padding: 4px 8px;
+    font-size: 11px;
+    width: auto;
+}
+.btn-edit:hover { background-color: #d68910; }
+
+.btn-duplicate {
+    background-color: #2980b9;
+    padding: 4px 8px;
+    font-size: 11px;
+    width: auto;
+}
+.btn-duplicate:hover { background-color: #1f618d; }
+
+.btn-delete {
+    background-color: var(--gye-red);
+    padding: 4px 8px;
+    font-size: 11px;
+    width: auto;
+}
+.btn-delete:hover { background-color: #c0392b; }
+
+.btn-print {
+    background-color: #27ae60;
+    padding: 6px 12px;
+    font-size: 13px;
+    width: auto;
+}
+.btn-print:hover { background-color: #219653; }
+
+.client-history-box {
+    background: #ebf5fb;
+    border: 1px solid #a9cce3;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+tr.pedido-entregado {
+    background-color: #e8f8f5 !important;
+    opacity: 0.75;
+}
+tr.pedido-entregado td {
+    color: #555 !important;
+    text-decoration: line-through;
+}
+tr.pedido-entregado .print-badge-camion,
+tr.pedido-entregado .print-badge-factura {
+    opacity: 0.8;
+}
+
+.print-header { display: none; }
+
+#presupuesto-preview-box {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-top: 10px solid var(--gye-yellow);
+    padding: 15mm;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+@media print {
+    body { background-color: white; padding: 0; color: black; }
+    header, .dashboard-stats, .nav-tabs, .filter-section, .no-print { display: none !important; }
+    
+    .tab-content { display: none !important; }
+    
+    #tab-despacho.tab-content.active { display: block !important; }
+    #tab-presupuestos.tab-content.active { display: block !important; }
+    
+    .print-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+    .print-header img { height: 40px; }
+    .print-header h2 { margin: 0; font-size: 16px; color: black; }
+
+    .container { max-width: 100%; margin: 0; padding: 0; }
+    .card { box-shadow: none; border: none; padding: 0; margin: 0; }
+    
+    table { font-size: 12px; width: 100%; border-collapse: collapse; }
+    table th, table td { border: 1px solid #000 !important; padding: 8px; color: black !important; }
+    table th { background-color: #e2e8f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    
+    .print-obs {
+        color: #000000 !important;
+        font-weight: bold !important;
+        font-size: 13px !important;
+    }
+
+    .print-badge-factura {
+        border: 1px solid #000 !important;
+        background: #fff !important;
+        color: #000 !important;
+        padding: 1px 4px;
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    .print-badge-camion {
+        border: 1px solid #000 !important;
+        background: #000 !important;
+        color: #fff !important;
+        padding: 2px 5px;
+        font-weight: bold;
+        font-size: 11px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .col-acciones, .action-buttons { display: none !important; }
+
+    #tab-presupuestos header, #tab-presupuestos .form-group, #tab-presupuestos hr, 
+    #tab-presupuestos .btn-add-item, #tab-presupuestos div[style*="display: flex; gap: 10px"] {
+        display: none !important;
+    }
+
+    #presupuesto-preview-box {
+        border: none !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        min-height: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
